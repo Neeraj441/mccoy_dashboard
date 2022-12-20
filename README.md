@@ -1,1 +1,1 @@
-# Department based Group Project Used for Predicting and analyzing McCoy Building Energy Consumption and Management 
+# Web Dashboard to show predictions and Analytical results of the McCoy Building Energy Consumption. By Using Python, Google cloud platform console, Javascript
