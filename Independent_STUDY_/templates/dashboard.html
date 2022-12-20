@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="">
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image:src" content="">
+  <meta property="og:image" content="">
+  <meta name="twitter:title" content="Dashboard">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="../static/assets/images/McCoy_Energy.png" type="image/x-icon">
+  <meta name="description" content="">
+
+
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../static/assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="../static/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="../static/assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="../static/assets/parallax/jarallax.css">
+  <link rel="stylesheet" href="../static/assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="../static/assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="../static/assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="../static/assets/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" href="../static/assets/mobirise/css/mbr-additional.css" type="text/css">
+    <link rel="stylesheet" href="../static/assets/temperature/font/Rimouski.css">
+    <link rel="stylesheet" href="../static/assets/temperature/style.css">
+
+    <style>
+        .datetime {
+            width: 430px;
+            height: 115px;
+            padding: 37px;
+            background-color: #1f567c;
+            color: #eeeef1;
+            margin: 0 auto;
+            font-size: 29px;
+            border-radius: 6px;
+            align-content: center;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            {% for key, value in data.items() %}
+                {% if value is string %}
+                    ['{{ key }}', '{{ value }}'],
+                {% else %}
+                    ['{{ key }}', {{ value }}],
+                {% endif %}
+            {% endfor %}
+        ]);
+
+        var options = {
+          is3D: true,
+          pieHole: 1,
+          pieStartAngle: 125,
+            legend: 'bottom',
+            backgroundColor: '#bfcece'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+
+</head>
+<body>
+
+  <section data-bs-version="5.1" class="menu cid-ta7raJayxn" once="menu" id="menu1-1c">
+
+    <nav class="navbar navbar-dropdown navbar-expand-lg">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="/">
+                        <img src="../static/assets/images/McCoy_Energy.png" alt="Home" style="height: 3.8rem;">
+                    </a>
+                </span>
+
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                    <li class="nav-item">
+                        <a class="nav-link link text-black text-primary display-4" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link text-black text-primary display-4" href="/predictions">Predictions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link text-black text-primary display-4" href="/data">Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link text-black text-primary display-4" href="/data_warehousing">Data Warehousing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link text-black text-primary display-4" href="/contact_us">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<section data-bs-version="5.1" class="features23 cid-ta6JRPGLRz mbr-parallax-background" id="features23-11">
+
+
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
+    </div>
+    <div class="container">
+        <div class="card-wrapper">
+            <div class="card-box align-left">
+
+            </div>
+        </div>
+        <!-- col-12 col-md-6 col-lg-4 -->
+        <div class="row justify-content-center content-row mb-0 mt-12">
+            <div class="card p-4 p-md-3 col-md-6 col-lg-5">
+                <div class="card-box">
+                    <div class="title">
+                        <div class="datetime" id="currentDate"></div>
+                        <script>
+                            function refreshTime() {
+                                const timeDisplay = document.getElementById("currentDate");
+                                const dateString = new Date().toLocaleString();
+                                const formattedString = dateString.replace(", ", " - ");
+                                timeDisplay.textContent = formattedString;
+                            }
+                            setInterval(refreshTime, 1000);
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-4 p-md-3 col-md-6 col-lg-5">
+                <div class="card-box">
+                    <div class="weatherWidget" ></div>
+                    <script>
+                        window.weatherWidgetConfig =  window.weatherWidgetConfig || [];
+                        window.weatherWidgetConfig.push({
+                        selector:".weatherWidget",
+                        apiKey:"V9DMTC7MX6AXKXZNARMP5JL8K", //Sign up for your personal key
+                        location:"SanMarcos, TX", //Enter an address
+                        unitGroup:"us", //"us" or "metric"
+                        forecastDays:5, //how many days forecast to show
+                        title:"San Marcos, TX", //optional title to show in the
+                        showTitle:true,
+                        showConditions:true
+                        });
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://www.visualcrossing.com/widgets/forecast-simple/weather-forecast-widget-simple.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="features4 cid-ta6IpcbDxd" id="features4-w">
+
+    <div class="mbr-overlay"></div>
+    <div class="container-fluid">
+        <div class="mbr-section-head">
+            <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5">
+                <strong>McCoy Building Energy, Temperature Charts and Statistics</strong></h4>
+
+        </div>
+        <div class="row mt-4">
+            <div class="item features-image сol-12 col-md-6 col-lg-4">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <p class="mbr-section-title mbr-fonts-style align-center mb-0">
+                            <strong>Total Consumption from Oct 2021 to Apr 2022 in kW's</strong></p>
+                        <div id="piechart_3d" style="position: relative; height: 100%; width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item features-image сol-12 col-md-6 col-lg-8">
+                <div class="item-wrapper" style="overflow:scroll;">
+                    <div class="item-img">
+                        <div id="chart" class="chart" ></div>
+                        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                        <script type="text/javascript">
+                            var graphs = {{graphJSON | safe}};
+                            Plotly.plot('chart',graphs,{});
+                        </script>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content8 cid-ta7w2qdBUY" id="content8-1m">
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="counter-container col-md-12 col-lg-10">
+                <h4 class="mbr-section-title mbr-fonts-style mb-4 display-5"><strong>
+                    Energy Conservative Tips</strong></h4>
+                <div class="mbr-text mbr-fonts-style display-7">
+                    <ul>
+                        <li><strong>Turn Off Your Lights. </strong><span style="font-size: 1.2rem;">When you leave a classroom, just flip the switch. When you leave your apartment, check to make sure all the lights are turned off. If you know you’ll be studying late into the night, consider doing so in a nearby library or </span><span style="font-size: 19.2px;">café</span><span style="font-size: 1.2rem;">&nbsp;so you can leave your lights (and your air conditioning) off at home.</span></li><li><strong>Unplug Your Electronics. </strong>Unplug your electronics and make it a habit. As soon as your phone is done charging, unplug the charger. In areas with several electronics such as around your work area, use a power strip with multiple outlets and easily turn off several electronics at once with the flip of a switch. This makes it easier for you to maintain your the habit of turning off electronics when they are not in use.</li>
+                        <li><strong>Keep shades open or closed to either allow sunlight to heat during winter or to prevent heating during summer.</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="gallery6 mbr-gallery cid-ta6Ipdw872" id="gallery6-y">
+
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(250, 250, 250);">
+    </div>
+
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center m-0 display-5"><strong>Other University Buildings</strong></h3>
+
+        </div>
+        <div class="row mbr-gallery mt-4">
+
+            <div class="col-12 col-md-6 col-lg-4 item gallery-image active">
+                <div class="item-wrapper" data-toggle="modal" data-bs-toggle="modal" data-target="#taeeWhOeJY-modal" data-bs-target="#taeeWhOeJY-modal">
+                    <img class="w-100" src="../static/assets/images/applied-arts-2-300x168.png" alt="" data-slide-to="0" data-bs-slide-to="0" data-target="#lb-taeeWhOeJY" data-bs-target="#lb-taeeWhOeJY">
+                    <div class="icon-wrapper">
+                        <span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 item gallery-image">
+                <div class="item-wrapper" data-toggle="modal" data-bs-toggle="modal" data-target="#taeeWhOeJY-modal" data-bs-target="#taeeWhOeJY-modal">
+                    <img class="w-100" src="../static/assets/images/education-373x135.png" alt="" data-slide-to="1" data-bs-slide-to="1" data-target="#lb-taeeWhOeJY" data-bs-target="#lb-taeeWhOeJY">
+                    <div class="icon-wrapper">
+                        <span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 item gallery-image">
+                <div class="item-wrapper" data-toggle="modal" data-bs-toggle="modal" data-target="#taeeWhOeJY-modal" data-bs-target="#taeeWhOeJY-modal">
+                    <img class="w-100" src="../static/assets/images/cs-1-436x115.png" alt="" data-slide-to="2" data-bs-slide-to="2" data-target="#lb-taeeWhOeJY" data-bs-target="#lb-taeeWhOeJY">
+                    <div class="icon-wrapper">
+                        <span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal mbr-slider" tabindex="-1" role="dialog" aria-hidden="true" id="taeeWhOeJY-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="carousel slide" id="lb-taeeWhOeJY" data-interval="3000" data-bs-interval="3000">
+                            <div class="carousel-inner">
+
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="../static/assets/images/applied-arts-2-300x168.png" alt="Mobirise Website Builder">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="../static/assets/images/education-373x135.png" alt="Mobirise Website Builder">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="../static/assets/images/cs-1-436x115.png" alt="Mobirise Website Builder">
+                                </div>
+                            </div>
+                            <ol class="carousel-indicators">
+                                <li data-slide-to="0" data-bs-slide-to="0" class="active" data-target="#lb-taeeWhOeJY" data-bs-target="#lb-taeeWhOeJY"></li>
+                                <li data-slide-to="1" data-bs-slide-to="1" data-target="#lb-taeeWhOeJY" data-bs-target="#lb-taeeWhOeJY"></li><li data-slide-to="2" data-bs-slide-to="2" data-target="#lb-taeeWhOeJY" data-bs-target="#lb-taeeWhOeJY"></li>
+
+
+                            </ol>
+                            <a role="button" href="" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">
+                            </a>
+                            <a class="carousel-control-prev carousel-control" role="button" data-slide="prev" data-bs-slide="prev" href="#lb-taeeWhOeJY">
+                                <span class="mobi-mbri mobi-mbri-arrow-prev" aria-hidden="true"></span>
+                                <span class="sr-only visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next carousel-control" role="button" data-slide="next" data-bs-slide="next" href="#lb-taeeWhOeJY">
+                                <span class="mobi-mbri mobi-mbri-arrow-next" aria-hidden="true"></span>
+                                <span class="sr-only visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="footer7 cid-tc01c81ppD" once="footers" id="footer7-22">
+    <div class="container">
+        <div class="media-container-row align-center mbr-white">
+            <div class="col-12">
+                <p class="mbr-text mb-0 mbr-fonts-style display-4">
+                    © Copyright 2025 McCoy College of Business. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
